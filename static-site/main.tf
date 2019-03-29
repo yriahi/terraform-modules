@@ -8,6 +8,11 @@ resource "aws_s3_bucket" "site" {
     index_document = "index.html"
     error_document = "${var.error_document}"
   }
+
+  tags = "${merge(var.tags, map(
+    "Name", "${var.domain_name}"
+))}"
+
 }
 
 // IAM
