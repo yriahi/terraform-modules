@@ -5,4 +5,4 @@
 
 ## [0.1.0] - March 29, 2019
 
-Add static site module.
+[static-site] Add Terraform static site module.
