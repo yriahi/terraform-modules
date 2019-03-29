@@ -1,35 +1,16 @@
-// aws region
-provider "aws" {
-  region = "us-east-1"
-}
+This modules builds the components needed to host a a static site on AWS. It does the following:
+- Creates an S3 bucket and prepares it for static content hosting.
+- Adds a Cloudfront distribution.
+- Sets the IAM policy.
+- Provisions an ACM certificate with DNS validation.
 
-// dns zone
-variable "zone_id" {
-  type        = "string"
-  description = "The zone that domain will be added to."
-}
+As a Terraform module, this is meant to be instantiated. Here is an example:
 
-// site name being added
-variable "domain_name" {
-  type        = "string"
-  description = "The full domain name being added."
+```
+module "my_new_cool_static_site" {
+  source = "github.com/yriahi/terraform-modules//static-site?ref=0.12.0"
+  domain_name = "blog.myname.me"
+  origin_id = "myblog"
+  zone_id = "<AWS_HOSTED_DNS_ZONEID_HERE>"
 }
-
-// new site origin id
-variable "origin_id" {
-  type        = "string"
-  description = "Unique identifier for the CloudFront domain"
-  default = "default"
-}
-
-// error document
-variable "error_document" {
-  default = "/404.html"
-  description = "The error document being used for errors."
-}
-
-// tags
-variable "tags" {
-  type    = "map"
-  default = {}
-}
+```
