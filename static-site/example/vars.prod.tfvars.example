@@ -1,4 +1,6 @@
 
+domain_name = "www.myowndomain.me"
+
 tags = {
   environment = "prod"
   department = "team-one"
