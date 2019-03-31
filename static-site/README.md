@@ -6,6 +6,12 @@ This modules builds the components needed to host a a static site on AWS. It doe
 
 As a Terraform module, this is meant to be instantiated. Here is an example:
 
+## Requirements:
+- AWS Account.
+- Configured AWS profile.
+- Add your AWS hosted zone ID to `static-site/example/variables.tf`
+
+
 ```
 module "my_new_cool_static_site" {
   source = "github.com/yriahi/terraform-modules//static-site?ref=0.2.0"
