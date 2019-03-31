@@ -8,9 +8,11 @@ As a Terraform module, this is meant to be instantiated. Here is an example:
 
 ```
 module "my_new_cool_static_site" {
-  source = "github.com/yriahi/terraform-modules//static-site?ref=0.12.0"
-  domain_name = "blog.myname.me"
-  origin_id = "myblog"
-  zone_id = "<AWS_HOSTED_DNS_ZONEID_HERE>"
+  source = "github.com/yriahi/terraform-modules//static-site?ref=0.2.0"
+  domain_name = "${var.domain_name}"
+  origin_id = "${var.origin_id}"
+  zone_id = "${var.zone_id}"
+  tags = "${merge(var.tags, map(
+      ))}"
 }
 ```
