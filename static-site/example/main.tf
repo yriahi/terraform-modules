@@ -4,4 +4,6 @@ module "my_new_cool_static_site" {
   domain_name = "${var.domain_name}"
   origin_id = "${var.origin_id}"
   zone_id = "${var.zone_id}"
+  tags = "${merge(var.tags, map(
+      ))}"
 }
