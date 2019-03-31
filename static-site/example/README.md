@@ -1,5 +1,5 @@
 
-This example leverages my Terraform static site module to create the needed infrastructure for hosting a static site on S3. These are the AWS services that it will make use of:
+This example leverages my Terraform [static site module](https://github.com/yriahi/terraform-modules/tree/develop/static-site) to create the needed infrastructure for hosting a static site on S3. These are the AWS services that it will make use of:
 - Route 53
 - S3
 - Cloudfront
@@ -33,9 +33,11 @@ $ terraform plan -var-file="vars.dev.tfvars"  # preview your changes to prod
 $ terraform apply -var-file="vars.dev.tfvars" # apply your changes to prod
 ```
 
+## Optional
+- Edit the tags in the prod and non-prod files (will need `terraform apply` to deploy). Add and remove tags as you wish to meet your needs.
+
 ## Test:
-- Visit the production or dev version of your static site
+- Visit the production or dev version of your static site (content of static need to be sync'd separately).
 
 ## Notes:
 - Cloudfront will take few minutes to deploy.
-- Your static content for your site need to me synced separately (See [AWS S3 cp command](https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html))
