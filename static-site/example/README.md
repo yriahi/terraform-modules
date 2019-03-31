@@ -6,7 +6,7 @@ This example leverages my Terraform [static site module](https://github.com/yria
 - IAM
 
 ## Requirements:
-- [Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html)
+- [Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html).
 - AWS Account.
 - Configured AWS profile.
 - A hosted DNS zone on Route 53 (Zone ID).
@@ -14,20 +14,20 @@ This example leverages my Terraform [static site module](https://github.com/yria
 ## Steps:
 - Add your AWS hosted zone ID to `static-site/example/variables.tf`
 - Copy `example` folder to your new or existing static site project folder.
-- Rename the `example` folder to `terraform` (not required, but good to stick to convention).
+- Rename the `example` folder to `terraform` (not required, but it is good to stick to convention here).
 - Run the following commands:
 ```
 $ cd terraform
 $ terraform init
 ```
 
-Preview and deploy your non-production infrastructure version:
+Preview and deploy your *non-production* infrastructure:
 ```
 $ terraform plan -var-file="vars.dev.tfvars"  # preview your changes to dev
 $ terraform apply -var-file="vars.dev.tfvars" # apply your changes to dev
 ```
 
-Preview and deploy your production infrastructure version:
+Preview and deploy your *production* infrastructure:
 ```
 $ terraform plan -var-file="vars.dev.tfvars"  # preview your changes to prod
 $ terraform apply -var-file="vars.dev.tfvars" # apply your changes to prod
