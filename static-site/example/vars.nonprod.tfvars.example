@@ -1,0 +1,11 @@
+
+domain_name = "dev.myowndomain.me"
+
+tags = {
+  environment = "dev"
+  department = "team-one"
+  application = "awesomeapp"
+  techcontact = "tech-folks@me.net"
+  businesscontact = "tech-folks@me.net"
+  terraform_managed = "yes"
+}
