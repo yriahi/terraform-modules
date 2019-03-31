@@ -2,8 +2,9 @@
 This example leverages my Terraform [static site module](https://github.com/yriahi/terraform-modules/tree/develop/static-site) to create the needed infrastructure for hosting a static site on S3. These are the AWS services that it will make use of:
 - Route 53
 - S3
-- Cloudfront
-- IAM
+- AWS Cloudfront (Content Delivery Network)
+- AWS Identity and Access Management (IAM).
+- AWS Certificate Manager (ACM).
 
 ## Requirements:
 - [Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html).
