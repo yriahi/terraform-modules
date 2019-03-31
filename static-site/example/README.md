@@ -6,7 +6,7 @@ This example leverages my Terraform static site module to create the needed infr
 - IAM
 
 ## Requirements:
-- (Terraform)[https://learn.hashicorp.com/terraform/getting-started/install.html]
+- [Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html)
 - AWS Account.
 - Configured AWS profile.
 - A hosted DNS zone on Route 53 (Zone ID).
