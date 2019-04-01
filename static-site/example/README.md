@@ -4,6 +4,7 @@ This example leverages my Terraform [static site module](https://github.com/yria
 - S3
 - Cloudfront
 - IAM
+- ACM
 
 ## Requirements:
 - [Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html).
@@ -29,8 +30,8 @@ $ terraform apply -var-file="vars.dev.tfvars" # apply your changes to dev
 
 Preview and deploy your *production* infrastructure:
 ```
-$ terraform plan -var-file="vars.dev.tfvars"  # preview your changes to prod
-$ terraform apply -var-file="vars.dev.tfvars" # apply your changes to prod
+$ terraform plan -var-file="vars.prod.tfvars"  # preview your changes to prod
+$ terraform apply -var-file="vars.prod.tfvars" # apply your changes to prod
 ```
 
 ## Optional
