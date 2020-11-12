@@ -1,0 +1,49 @@
+{
+  "builders": [{
+    "type": "amazon-ebs",
+    "region": "us-east-1",
+    "source_ami_filter": {
+      "filters": {
+        "virtualization-type": "hvm",
+        "architecture": "x86_64",
+        "name": "amzn2-ami-ecs-*",
+        "root-device-type": "ebs"
+      },
+      "owners": ["amazon"],
+      "most_recent": true
+    },
+    "ami_name": "itd-ds-ecs-optimized-ssm-{{timestamp}}",
+    "instance_type": "t1.micro",
+    "ssh_username": "ec2-user",
+    "run_tags": {
+      "Name": "packer-tmp-build-ebs",
+      "Patch Group": "nonprod-linux2",
+      "agency": "itd",
+      "application": "bastion",
+      "backup": "na",
+      "businessowner": "eotss-dl-digitalcloud@massmail.state.ma.us",
+      "createdby": "eotss-dl-digitalcloud@massmail.state.ma.us",
+      "environment": "mgt",
+      "itowner": "eotss-dl-digitalcloud@massmail.state.ma.us",
+      "schedulev2": "0700_1900_weekdays",
+      "secretariat": "eotss"
+    }
+  }],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "scripts/cas.pub",
+      "destination": "/tmp/cas.pub"
+    },
+    {
+      "type": "shell",
+      "execute_command": "sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+      "script": "scripts/ssm.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+      "script": "scripts/trust-bless-ca.sh"
+    }
+  ]
+}

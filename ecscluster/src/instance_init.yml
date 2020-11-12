@@ -1,0 +1,8 @@
+#cloud-config
+
+write_files:
+  - content: |
+      ECS_CLUSTER=${cluster_name}
+      ECS_AVAILABLE_LOGGING_DRIVERS=["json-file", "awslogs"]
+    path: /etc/ecs/ecs.config
+
