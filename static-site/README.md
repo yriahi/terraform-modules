@@ -1,7 +1,5 @@
-This modules builds the components needed to host a a static site on AWS. It does the following:
-- Creates an S3 bucket and prepares it for static content hosting.
-- Adds a Cloudfront distribution.
-- Sets the IAM policy.
-- Provisions an ACM certificate with DNS validation.
+Static Site
+===========
 
-As a Terraform module, this is meant to be instantiated. See the README.md in the example folder.
+This Terraform module creates a static site with multiple environments that is hosted on S3 and served via Cloudfront. This module also provisions the domain name and SSL certs for each environment.
+
