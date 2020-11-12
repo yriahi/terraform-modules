@@ -108,7 +108,7 @@ resource "aws_route53_record" "verification" {
 // validate the certificate with dns entry
 resource "aws_acm_certificate_validation" "default" {
   certificate_arn         = aws_acm_certificate.default.arn
-  validation_record_fqdns = aws_route53_record.verification.*.fqdn
+  validation_record_fqdns = [for record in aws_route53_record.verification : record.fqdn]
 }
 
 //// Route 53
