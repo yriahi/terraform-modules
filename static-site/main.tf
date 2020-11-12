@@ -89,19 +89,26 @@ resource "aws_acm_certificate" "default" {
 // dns record to use for certificate validation
 // create the DNS entry in th relevant zone
 resource "aws_route53_record" "verification" {
-  count = length(local.domains)
-  name    = aws_acm_certificate.default.domain_validation_options[count.index].resource_record_name
-  type    = aws_acm_certificate.default.domain_validation_options[count.index].resource_record_type
-  records = [aws_acm_certificate.default.domain_validation_options[count.index].resource_record_value]
-  zone_id = var.zone_id
-  ttl     = "60"
+  for_each = {
+    for dvo in aws_acm_certificate.existing.domain_validation_options : dvo.domain_name => {
+      name   = dvo.resource_record_name
+      record = dvo.resource_record_value
+      type   = dvo.resource_record_type
+    }
+  }
+  allow_overwrite = true
+  name            = each.value.name
+  records         = [each.value.record]
+  ttl             = 60
+  type            = each.value.type
+  zone_id         = var.zone_id
 }
 
 // Route 53
 // validate the certificate with dns entry
 resource "aws_acm_certificate_validation" "default" {
   certificate_arn         = aws_acm_certificate.default.arn
-  validation_record_fqdns = aws_route53_record.verification.*.fqdn
+  validation_record_fqdns = [for record in aws_route53_record.verification : record.fqdn]
 }
 
 //// Route 53
@@ -207,4 +214,3 @@ resource "aws_cloudfront_origin_access_identity" "edge" {
   count = length(var.environments)
   comment = "Cloudfront ID for ${var.name}:${var.environments[count.index].name}"
 }
-
